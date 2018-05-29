@@ -1,0 +1,5 @@
+<div *ngFor="let follower of followers" class="list-followers">
+  <a [routerLink]="['/followers', follower.id, follower.login]">{{ follower.login }}</a>
+</div>
+
+<!-- <button [routerLink]="['/followers', 12345]" class="btn btn-primary">Next</button> -->
