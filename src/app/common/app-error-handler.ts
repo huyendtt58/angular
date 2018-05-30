@@ -2,7 +2,7 @@ import { ErrorHandler } from '@angular/core';
 
 export class AppErrorHandler implements ErrorHandler {
   handleError(error) {
-    alert('Unexpection.')
+    alert('Unexpection.');
     console.log(error);
   }
 }

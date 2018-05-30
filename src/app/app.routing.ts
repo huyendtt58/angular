@@ -14,38 +14,38 @@ import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 
 const appRoutes: Routes = [
     {
-        path: '',
-        component: HomeComponent
-      },
-      {
-        path: 'followers',
-        component: GithubFollowersComponent
-      },
-      {
-        path: 'followers/:id/:username',
-        component: GithubProfileComponent
-      },
-      {
-        path: 'posts',
-        component: PostsComponent
-      },
-      {
-        path: 'login',
-        component: LoginComponent
-      },
-      {
-        path: 'admin',
-        component: AdminComponent,
-        canActivate: [AuthGuardService, AdminAuthGuardService]
-      },
-      {
-        path: 'no-access',
-        component: NoAccessComponent
-      },
-      {
-        path: '**',
-        component: NotFoundComponent
-      }
+      path: '',
+      component: HomeComponent
+    },
+    {
+      path: 'followers',
+      component: GithubFollowersComponent
+    },
+    {
+      path: 'followers/:id/:username',
+      component: GithubProfileComponent
+    },
+    {
+      path: 'posts',
+      component: PostsComponent
+    },
+    {
+      path: 'login',
+      component: LoginComponent
+    },
+    {
+      path: 'admin',
+      component: AdminComponent,
+      canActivate: [AuthGuardService, AdminAuthGuardService]
+    },
+    {
+      path: 'no-access',
+      component: NoAccessComponent
+    },
+    {
+      path: '**',
+      component: NotFoundComponent
+    }
 ];
 
 export const routing = RouterModule.forRoot(appRoutes);

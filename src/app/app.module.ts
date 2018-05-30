@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { HttpModule, BaseRequestOptions } from '@angular/http';
-import { MockBackend } from '@angular/http/testing';
+// import { HttpModule, BaseRequestOptions } from '@angular/http';
+// import { MockBackend } from '@angular/http/testing';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -30,7 +30,7 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 
-import { fackBackendProvider } from './fake-backend-provider';
+import { fakeBackendProvider } from './fake-backend-provider';
 import { JwtInterceptor } from './jwt-interceptor';
 
 import { CoursesService } from './services/courses.service';
@@ -67,7 +67,7 @@ import { routing } from './app.routing';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule,
+    // HttpModule,
     HttpClientModule,
     routing
   ],
@@ -76,13 +76,19 @@ import { routing } from './app.routing';
     PostService,
     GithubFollowersService,
     AuthService,
-    OrderService,
+    OrderService,    
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    },
+    {
+      provide: ErrorHandler,
+      useClass: AppErrorHandler
+    },
 
-    {provide: ErrorHandler, useClass: AppErrorHandler},
+    fakeBackendProvider
 
-    MockBackend,
-    BaseRequestOptions,
-    fackBackendProvider
   ],
   bootstrap: [AppComponent]
 })
