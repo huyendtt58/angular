@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 import 'rxjs/add/operator/map';
@@ -10,15 +12,16 @@ import 'rxjs/add/operator/map';
 })
 export class AuthService {
 
-  constructor(private http: Http) { }
+  // constructor(private http: Http) { }
+  constructor(private httpClient: HttpClient) { }
 
   login(account) {
     const authUrl = '/api/authenticate';
-    return this.http.post(authUrl, JSON.stringify(account))
+    return this.httpClient.post(authUrl, JSON.stringify(account))
       .map(response => {
-        let result = response.json();
-        if(result && result.token) {
-          localStorage.setItem('token', result.token);
+        let token = response;
+        if(token) {
+          localStorage.setItem('token', JSON.stringify(token));
           return true;
         }
         return false;
